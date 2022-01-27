@@ -1,0 +1,55 @@
+<div class="cointainer">
+
+  <h1 class="mt-4 display-4 text-center mb-5">Session List</h1>
+
+<div class="form-group m-4 " >
+ 
+  <input type="text" class="form-control" name="name" placeholder="Search for sessions" [(ngModel)]="filterTerm" (ngModelChange)="Search()">
+</div>
+
+<table class="table align-middle mt-4">
+    <thead>
+      <tr>
+        
+        
+        <th (click)="sort('name')"  scope="col">Name &nbsp; <i class="fa fa-sort"></i></th>
+        <th scope="col">SessionStart</th>
+        
+        <th scope="col">SessionEnd</th>
+       
+        <th scope="col">Presenter</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Actions</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let s of session | orderBy:key:reverse | paginate: { itemsPerPage: 5, currentPage: p }" >
+       
+       <td>{{s.name}}</td>
+       <td>{{s.sessionDateTimeStart  | date :'short'}}</td>
+       
+       <td>{{s.sessionDateTimeEnd  |  date :'short'}}</td>
+      
+       <td>{{s.presenter}}</td>
+       <td>{{s.duration}}</td>
+       
+       
+        <td>
+            <div >
+                
+              <button type="button" (click)="openDialog(s.id)" class="btn btn-primary form-group " >Add Feedback</button>
+               
+            </div>
+        </td>
+        
+        
+      </tr> 
+     
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
+
+</div>
+

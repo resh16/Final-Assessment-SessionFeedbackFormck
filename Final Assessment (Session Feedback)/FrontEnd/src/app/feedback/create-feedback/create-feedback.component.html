@@ -1,0 +1,77 @@
+<div style="align-content: center;">
+    <h1 class="display-4 text-center">Feedback Form</h1>
+</div>
+<div class="cointainer">
+    <form #FeedbackForm="ngForm" (submit)="OnSubmit(FeedbackForm)">
+
+
+
+
+        <div class="row mb-3 form-group">
+            <label class="col-sm-2 col-form-label">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" name="Name" #Name="ngModel" minlength="5" maxlength="200" [(ngModel)]="service.formData.Name"
+                    class="form-control" required>
+                <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required </div>
+            </div>
+        </div>
+
+
+        <div class=" row mb-3 form-group">
+            <label class="col-sm-2 col-form-label">What went well:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="GoodFeedback" minlength="10" maxlength="500" #GoodFeedback="ngModel"
+                    [(ngModel)]="service.formData.GoodFeedback" required rows="3"></textarea>
+            </div>
+        </div>
+
+
+        <div class=" row mb-3 form-group">
+            <label class="col-sm-2 col-form-label">What can be Improved:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="BadFeedback" minlength="10" maxlength="500" #BadFeeedback="ngModel"
+                    [(ngModel)]="service.formData.BadFeedback" required rows="3"></textarea>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-3 form-group">
+            <label class="col-sm-2 col-form-label">Rating</label>
+            <div class="col-sm-10">
+                <select class="form-select form-control" name="Rating" #Rating="ngModel"
+                    [(ngModel)]="service.formData.Rating" required>
+                    <option selected>--Select Rating--</option>
+                    <option value="5">Excellent</option>
+                    <option value="4">Good</option>
+                    <option value="3">Satisfactory</option>
+                    <option value="2">Poor</option>
+                    <option value="1">Waste of Time</option>
+                </select>
+                <div class="validation-error" *ngIf="Rating.invalid && Rating.touched ">This field is required </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="row mb-3 form-group">
+            <label class="col-sm-2 col-form-label">Share Pictures of the session</label>
+            <div class="col-sm-10">
+                <input type="file" name="Image" #Image accept="image/x-png,image/jpg,image/jpeg"  (change)="handleFileInput($event)" class="form-control" required>
+                
+                
+
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary form-group" [disabled]="FeedbackForm.invalid">Submit</button>
+    </form>
+
+
+
+</div>
